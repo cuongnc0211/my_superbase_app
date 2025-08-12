@@ -35,5 +35,6 @@
 
 
 # Kamal secrets
-/.kamal/secrets
-/.kamal/secrets.*
+/.kamal/secrets*
+
+/text.txt
