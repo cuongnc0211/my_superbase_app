@@ -24,7 +24,11 @@ class ApiKeysController < ApplicationController
     @api_key = ApiKey.new(api_key_params)
 
     respond_to do |format|
-      if @api_key.save
+      if @api_key.valid?
+
+        @api_key.client_secret = SecureRandom.base64(30)
+        @api_key.save
+
         format.html { redirect_to @api_key, notice: "Api key was successfully created." }
         format.json { render :show, status: :created, location: @api_key }
       else
@@ -65,6 +69,6 @@ class ApiKeysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def api_key_params
-      params.expect(api_key: [ :name, :client_id, :client_secret ])
+      params.expect(api_key: [ :name, :client_id ])
     end
 end
