@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def basic_authenticate
-    return unless Rails.env.staging? || Rails.env.development?
+    return if Rails.env.development?
 
     authenticate_or_request_with_http_basic("Restricted Area") do |username, password|
       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
