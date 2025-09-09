@@ -1,17 +1,17 @@
-<div id="<%= dom_id api_key %>">
-  <p>
-    <strong>Name:</strong>
-    <%= api_key.name %>
-  </p>
+<div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-md transition-shadow">
+  <div class="p-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-2">
+      <%= api_key.name %>
+    </h2>
 
-  <p>
-    <strong>Client:</strong>
-    <%= api_key.client_id %>
-  </p>
+    <div class="mt-4 flex items-center text-sm text-gray-600">
+      <span class='font-bold px-3'>Client ID: </span>
+      <span><%= api_key.client_id %></span>
+    </div>
 
-  <p>
-    <strong>Client secret:</strong>
-    <%= api_key.client_secret %>
-  </p>
-
+    <div class="mt-4 flex items-center text-sm text-gray-600">
+      <span class='font-bold px-3'>Client Secret: </span>
+      <span><%= api_key.client_secret %></span>
+    </div>
+  </div>
 </div>
