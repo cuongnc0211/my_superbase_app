@@ -1,9 +1,10 @@
-<%= form_with(model: api_key) do |form| %>
+<%= form_for api_key do |form| %>
   <% if api_key.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(api_key.errors.count, "error") %> prohibited this api_key from being saved:</h2>
-
-      <ul>
+    <div class="mb-6 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+      <h2 class="mb-2 font-semibold">
+        <%= pluralize(api_key.errors.count, "error") %> prohibited this api key from being saved:
+      </h2>
+      <ul class="list-disc space-y-1 pl-5">
         <% api_key.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,17 +12,19 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="space-y-6">
+    <div>
+      <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" %>
+    </div>
+
+    <div>
+      <%= form.label :client_id, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :client_id, class: "mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :client_id, style: "display: block" %>
-    <%= form.text_field :client_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mt-8">
+    <%= form.submit class: "inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
   </div>
 <% end %>
