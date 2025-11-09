@@ -7,7 +7,12 @@ image: cuongnguyenfu/super_base_app
 # Deploy to these servers.
 servers:
   web:
-    - 52.221.240.255
+    hosts:
+      - mypc       # or an SSH-able hostname
+    # keep the proxy on; CF Tunnel will hit port 80 on localhost
+    proxy: true
+    options:
+      add-host: "host.docker.internal:host-gateway"
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -18,8 +23,11 @@ servers:
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
-  ssl: true
   host: superbase.cuongnguyenfu.com
+  app_port: 3000
+  # Optional healthcheck via proxy:
+  healthcheck:
+    path: /health
 
 # Credentials for your image host.
 registry:
@@ -59,6 +67,7 @@ env:
     RAILS_LOG_LEVEL: debug
 
     RAILS_ENV: production
+    PORT: 3000
     RAILS_LOG_TO_STDOUT: "1"
     RAILS_SERVE_STATIC_FILES: "true"
 
@@ -98,7 +107,10 @@ builder:
 
 # Use a different ssh user than root
 ssh:
-  user: ubuntu
+  user: cuong-nguyen
+  # options:
+  #   - "-o ProxyCommand=/opt/homebrew/bin/cloudflared access ssh --hostname %h"
+    # ^^^ IMPORTANT: use the *real* path to cloudflared on your Mac (see below)
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:

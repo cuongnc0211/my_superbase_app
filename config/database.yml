@@ -81,7 +81,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
+    # url: <%= ENV["DATABASE_URL"] %>
+    url: 'postgres://mypc_postgres:mypcPassword@2025@host.docker.internal:5432/superbase_production'
   cache:
     <<: *primary_production
     database: super_base_app_production_cache
