@@ -40,3 +40,9 @@
 /text.txt
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+/.claude/
+/.opencode/
+/.repomixignore
+/CLAUDE.md
+/plans/*
